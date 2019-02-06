@@ -6,5 +6,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'java23190203HW1';
+  currentPerson: Contact|null=null;
+
+  contacts:Contact[]=[];
+  currentIndex:number=-1;
+
+
+
+  remove(indx:number):void{
+    this.contacts.splice(indx,1 );
+    if(indx == this.currentIndex){
+      this.currentPerson = null;
+    }
+  }
+
+  selectCurrent(contact:Contact,indx:number):void{
+    this.currentPerson = contact;
+    this.currentIndex = indx;
+  }
+
+  receiveContact($event: Contact) {
+    this.contacts.push($event);
+  }
 }
+
